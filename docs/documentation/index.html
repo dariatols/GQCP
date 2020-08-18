@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Documentation overview · GQCP</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Why?"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Documentation overview · GQCP"/><meta property="og:type" content="website"/><meta property="og:url" content="https://GQCG.github.io/GQCP/"/><meta property="og:description" content="## Why?"/><meta property="og:image" content="https://GQCG.github.io/GQCP/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://GQCG.github.io/GQCP/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/GQCP/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://GQCG.github.io/GQCP/blog/atom.xml" title="GQCP Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://GQCG.github.io/GQCP/blog/feed.xml" title="GQCP Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/GQCP/js/scrollSpy.js"></script><link rel="stylesheet" href="/GQCP/css/main.css"/><script src="/GQCP/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/GQCP/"><img class="logo" src="/GQCP/img/favicon.ico" alt="GQCP"/><h2 class="headerTitleWithLogo">GQCP</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/GQCP/docs/documentation" target="_self">Documentation</a></li><li class=""><a href="/GQCP/docs/doc4" target="_self">API</a></li><li class=""><a href="/GQCP/help" target="_self">Help</a></li><li class=""><a href="/GQCP/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Introduction</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/GQCP/docs/documentation">Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">C++</h3><ul class=""><li class="navListItem"><a class="navItem" href="/GQCP/docs/cpp_documentation">C++ documentation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Python</h3><ul class=""><li class="navListItem"><a class="navItem" href="/GQCP/docs/python_documentation">Documentation of the Python bindings</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Documentation overview</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="why"></a><a href="#why" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why?</h2>
+<p>At GQCG, we strongly believe that every complex problem can be solved. Calculating the electronic structure is one of them. From the combination of our passion for quantum chemistry and open-source software, GQCP saw its first light in 2017 and has been growing ever since.</p>
+<p>But why does our quantum chemistry community need yet another electronic structure code? While other code bases might have better performance than GQCP, GQCP is modern at its core. GQCP is natively written in C++, so we have access to the most modern software techniques and compilers. GQCPY is its Python-bounded counterpart, so we fully embrace Python's present role as data manipulating language. Gone are the days of providing input files or writing executables, with GQCPY and Jupyter Notebooks you can naturally adapt a work flow that is both playful and systematic at the same time.</p>
+<h2><a class="anchor" aria-hidden="true" id="general-structure-of-gqcp"></a><a href="#general-structure-of-gqcp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>General structure of GQCP</h2>
+<p>GQCP has two main components: the C++ library <code>gqcp</code> and its associated Python bindings <code>gqcpy</code>. This is reflected in the folder structure of the GitHub repository, where we have, among other directories, the <code>gqcp</code> and <code>gqcpy</code> directories. As is common, the C++ library has <code>include</code>, <code>src</code> and <code>tests</code> folder, while the folder that contains the Python bindings only has a <code>src</code> folder and a <code>tests</code> folder.</p>
+<p>Inside each of these folders, we have added the following structure:</p>
+<ul>
+<li><strong>Basis</strong>: for everything related to spinors, spinor basis and transformations</li>
+<li><strong>Mathematical</strong>: for general mathematical utilities, not directly related to quantum chemistry</li>
+<li><strong>Molecule</strong>: for everything related to molecules and nuclei</li>
+<li><strong>ONVBasis</strong>: for everything related to ONVs and bases for Fock (sub)spaces</li>
+<li><strong>Operator</strong>: for everything related to first- and second-quantized operators</li>
+<li><strong>Processing</strong>: for collecting everything that happens <em>after</em> the determination of the optimal values of the electronic structure model's parameters</li>
+<li><strong>QCMethod</strong>: for the determination of the optimal parameters of an electronic structure model</li>
+<li><strong>Utilities</strong>: for collecting general utilities that do not belong elsewhere</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="documentation-overview"></a><a href="#documentation-overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation overview</h2>
+<p>An overview of the C++ documentation can be found <a href="/GQCP/docs/cpp_documentation">here</a>, while the documentation for the Python bindings can be found <a href="/GQCP/docs/python_documentation">here</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/GQCP/docs/cpp_documentation"><span>C++ documentation</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#why">Why?</a></li><li><a href="#general-structure-of-gqcp">General structure of GQCP</a></li><li><a href="#documentation-overview">Documentation overview</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/GQCP/" class="nav-home"><img src="/GQCP/img/favicon.ico" alt="GQCP" width="66" height="58"/></a><div><h5>Docs</h5><a href="/GQCP/docs/doc1.html">Getting Started (or other categories)</a><a href="/GQCP/docs/doc2.html">Guides (or other categories)</a><a href="/GQCP/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/GQCP/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/GQCP/blog">Blog</a><a href="https://github.com/GQCG/GQCP">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/GQCP/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 GQCG</section></footer></div></body></html>
