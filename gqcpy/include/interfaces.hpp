@@ -488,24 +488,6 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def("matrix",
              &Type::matrix,
-<<<<<<< HEAD
-             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.")
-
-
-        .def("inverse",
-             &Type::inverse,
-             "Return the inverse transformation of this transformation matrix.")
-
-        .def(
-            "isUnitary",
-            [](const Type& T, const double threshold = 1.0e-12) {
-                return T.isUnitary(threshold);
-            },
-            "Return if this transformation is unitary, within the given threshold");
-
-    // Expose the `BasisTransformable` APIs.
-    bindBasisTransformableInterface(py_class);
-=======
              "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.");
 
 
@@ -514,7 +496,6 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
     // Add some APIs related to operations on `BasisTransformable` objects.
     bindBasisTransformableOperationsInterface(py_class);
->>>>>>> develop
 }
 
 
