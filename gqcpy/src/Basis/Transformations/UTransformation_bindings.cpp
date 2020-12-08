@@ -41,23 +41,14 @@ void bindUTransformation(py::module& module) {
     // Define the Python class for `UTransformation`.
     py::class_<UTransformation<double>> py_UTransformation_d {module, "UTransformation_d", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
 
-    py_UTransformation_d
-        .def("inverse",
-             &UTransformation<double>::inverse,
-             "Return the inverse transformation of this transformation matrix.")
-
-        .def(
-            "isUnitary",
-            [](const UTransformation<double>& T, const double threshold = 1.0e-12) {
-                return T.isUnitary(threshold);
-            },
-            "Return if this transformation is unitary, within the given threshold");
-
     // Expose the `SpinResolvedBase` API to Python.
     bindSpinResolvedBaseInterface(py_UTransformation_d);
 
     // Expose the `BasisTransformable` API to Python.
     bindBasisTransformableInterface(py_UTransformation_d);
+
+    // Add some APIs related to operations on `BasisTransformable` objects.
+    bindBasisTransformableOperationsInterface(py_UTransformation_d);
 }
 
 
