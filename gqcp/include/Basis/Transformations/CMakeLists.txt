@@ -1,6 +1,8 @@
 target_sources(gqcp
     PRIVATE
         BasisTransformable.hpp
+        DoublySpinResolvedBasisTransformable.hpp
+        DoublySpinResolvedJacobiRotatable.hpp
         GTransformation.hpp
         JacobiRotatable.hpp
         JacobiRotation.hpp
@@ -12,5 +14,4 @@ target_sources(gqcp
         UTransformation.hpp
         UTransformationComponent.hpp
         transform.hpp
-        TransformationMatrix.hpp
 )

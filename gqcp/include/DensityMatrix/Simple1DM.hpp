@@ -19,6 +19,8 @@
 
 
 #include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -27,7 +29,7 @@ namespace GQCP {
 
 
 /*
- *  MARK: Simple1DM implementation
+ *  MARK: `Simple1DM` implementation
  */
 
 /**
@@ -41,7 +43,8 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>> {
+    public BasisTransformable<_DerivedDM>,
+    public JacobiRotatable<_DerivedDM> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -52,7 +55,7 @@ public:
     // The type of 'this'.
     using Self = Simple1DM<Scalar, DerivedDM>;
 
-    // The type of transformation that is naturally related to the DerivedDM.
+    // The type of transformation that is naturally related to the `DerivedDM`.
     using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
@@ -61,7 +64,7 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit base constructors.
+    // Inherit `SquareMatrix`' constructors.
     using SquareMatrix<Scalar>::SquareMatrix;
 
 
@@ -72,7 +75,7 @@ public:
 
 
     /*
-     *  MARK: Transformations
+     *  MARK: Conforming to `BasisTransformable`
      */
 
     /**
@@ -82,40 +85,40 @@ public:
      * 
      *  @return The basis-transformed 1-DM.
      */
-    Self transformed(const Transformation& T) const override {
+    DerivedDM transformed(const Transformation& T) const override {
 
-        return Self(T.matrix().inverse().conjugate() * (*this) * T.matrix().inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See `SimpleSQOneElectronOperator`.
+        // The transformation formulas for one-electron operators and 1-DMs are similar, but not quite the same. Instead of using T, the transformation formula for the 1-DM uses T_inverse_transpose. See also (https://gqcg-res.github.io/knowdes/spinor-transformations.html).
+        const auto T_related = T.matrix().transpose().inverse();
+        return DerivedDM {T_related.adjoint() * (*this) * T_related};
     }
-};
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<DerivedDM>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<DerivedDM>::rotated;
 
 
-/*
- *  MARK: BasisTransformableTraits
- */
+    /*
+     *  MARK: Conforming to `JacobiRotatable`
+     */
 
-/**
- *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- */
-template <typename Scalar, typename DerivedDM>
-struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
+    /**
+     *  Apply the Jacobi rotation and return the result.
+     * 
+     *  @param jacobi_rotation          The Jacobi rotation.
+     * 
+     *  @return The Jacobi-transformed object.
+     */
+    DerivedDM rotated(const JacobiRotation& jacobi_rotation) const override {
 
-    // The type of the transformation for which the basis transformation should be defined.
-    using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
-};
+        // We implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it.
+        const auto J = Transformation::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
+        return this->rotated(J);
+    }
 
-
-/*
- *  MARK: JacobiRotatableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
- */
-template <typename Scalar, typename DerivedDM>
-struct JacobiRotatableTraits<Simple1DM<Scalar, DerivedDM>> {
-
-    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
-    using JacobiRotationType = JacobiRotation;
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<DerivedDM>::rotate;
 };
 
 

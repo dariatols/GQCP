@@ -49,6 +49,12 @@ public:
     // The type of the transformation for which the basis transformation should be defined. A transformation should naturally be transformable with itself.
     using Transformation = UTransformation<Scalar>;
 
+    // The type of 'this'.
+    using Self = UTransformation<Scalar>;
+
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<UTransformationComponent<Scalar>, Self>::Of;
+
 
 public:
     /*
@@ -106,6 +112,22 @@ public:
 
 
     /**
+     *  Create a random `UTransformation`.
+     * 
+     *  @param dim              The number of alpha or beta spin-orbitals (equal).
+     * 
+     *  @return A random `UTransformation`.
+     */
+    static UTransformation<Scalar> Random(const size_t dim) {
+
+        const auto T_alpha = UTransformationComponent<Scalar>::Random(dim);
+        const auto T_beta = UTransformationComponent<Scalar>::Random(dim);
+
+        return UTransformation<Scalar> {T_alpha, T_beta};
+    }
+
+
+    /**
      *  Create a random unitary `UTransformation`.
      * 
      *  @param dim              The number of alpha or beta spin-orbitals (equal).
@@ -146,6 +168,25 @@ public:
 
         return result;
     }
+
+
+    /**
+     *  MARK: Enabling basis transformations
+     */
+
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 

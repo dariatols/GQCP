@@ -19,8 +19,8 @@
 
 
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "DensityMatrix/MixedSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 #include "QuantumChemical/Spin.hpp"
@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  One of the pure (i.e. alpha-alpha or beta-beta) spin components of an unrestricted two-electron operator.
+ *  One of the mixed (i.e. alpha-beta or beta-alpha) spin components of an unrestricted two-electron operator.
  * 
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
@@ -69,12 +69,12 @@ public:
      *
      *  @return The expectation values of all the components of the two-electron operator, with the given 2-DM.
      */
-    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const SpinResolved2DMComponent<Scalar>& d) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const MixedSpinResolved2DMComponent<Scalar>& d) const {
 
         // FIXME: This is duplicate code from `SimpleSQTwoElectronOperator`. It would be double work to introduce a temporary intermediate class before resolving issue #559 (https://github.com/GQCG/GQCP/issues/559), which is why we chose to just copy-paste the implementation.
 
         if (this->numberOfOrbitals() != d.numberOfOrbitals()) {
-            throw std::invalid_argument("MixedUSQTwoElectronOperatorComponent::calculateExpectationValue(const SpinResolved2DMComponent&): The given 2-DM's dimension is not compatible with the two-electron operator.");
+            throw std::invalid_argument("MixedUSQTwoElectronOperatorComponent::calculateExpectationValue(const MixedSpinResolved2DMComponent&): The given 2-DM's dimension is not compatible with the two-electron operator.");
         }
 
 
@@ -114,7 +114,7 @@ public:
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
-        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols()));
+        const GQCP::Tensor<Scalar, 2> T_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols());
 
         // We calculate the conjugate as a tensor as well.
         const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
@@ -127,15 +127,15 @@ public:
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             switch (sigma) {
             case Spin::alpha: {
-                const auto temp = T_conjugate.template einsum<1>("UQ,TUVW->TQVW", parameters[i]);
-                const auto transformed = T_tensor.template einsum<1>("TP,TQVW->PQVW", temp);
+                const auto temp = T_tensor.template einsum<1>("UQ,TUVW->TQVW", parameters[i]);
+                const auto transformed = T_conjugate.template einsum<1>("TP,TQVW->PQVW", temp);
                 result[i] = transformed;
                 break;
             }
 
             case Spin::beta: {
-                const auto temp = parameters[i].template einsum<1>("PQVW, WS->PQVS", T_conjugate);
-                const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_tensor);
+                const auto temp = parameters[i].template einsum<1>("PQVW, WS->PQVS", T_tensor);
+                const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_conjugate);
                 result[i] = transformed;
                 break;
             }
@@ -247,7 +247,7 @@ struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
     // The type of the two-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
-    using TwoDM = SpinResolved2DMComponent<Scalar>;
+    using TwoDM = MixedSpinResolved2DMComponent<Scalar>;
 };
 
 
