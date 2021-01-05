@@ -566,9 +566,72 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+  <a class="reference internal nav-link" href="#ce-co-2">
    <span class="math notranslate nohighlight">
-    \(\ce{CH_2NH}\)
+    \(\ce{CO_2}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-hcn">
+   <span class="math notranslate nohighlight">
+    \(\ce{HCN}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-n-2o">
+   <span class="math notranslate nohighlight">
+    \(\ce{N_2O}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-co">
+   <span class="math notranslate nohighlight">
+    \(\ce{CO}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-so-2">
+   <span class="math notranslate nohighlight">
+    \(\ce{SO_2}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-so-3">
+   <span class="math notranslate nohighlight">
+    \(\ce{SO_3}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-scn">
+   <span class="math notranslate nohighlight">
+    \(\ce{SCN-}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-nco">
+   <span class="math notranslate nohighlight">
+    \(\ce{NCO-}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-no-2">
+   <span class="math notranslate nohighlight">
+    \(\ce{NO_2-}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ce-hno">
+   <span class="math notranslate nohighlight">
+    \(\ce{HNO}\)
    </span>
   </a>
  </li>
@@ -601,12 +664,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi4</span><span class="o">.</span><span class="n">set_memory</span><span class="p">(</span><span class="s2">&quot;4 GB&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi4</span><span class="o">.</span><span class="n">set_memory</span><span class="p">(</span><span class="s2">&quot;12 GB&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4000000000
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12000000000
 </pre></div>
 </div>
 </div>
@@ -743,29 +806,55 @@
                  <span class="s1">&#39;scf_type&#39;</span><span class="p">:</span> <span class="s1">&#39;df&#39;</span><span class="p">})</span>
     
     <span class="c1"># get wavefunction for the neutral compound</span>
-    <span class="n">E_J</span><span class="p">,</span> <span class="n">Psi_J</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">ch2nh</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">E_J</span><span class="p">,</span> <span class="n">Psi_J</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
     
     <span class="c1"># get wavefunction for the positive ion</span>
-    <span class="n">ch2nh</span><span class="o">.</span><span class="n">set_molecular_charge</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ch2nh</span><span class="o">.</span><span class="n">set_multiplicity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">E_I</span><span class="p">,</span> <span class="n">Psi_I</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">ch2nh</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">molecule</span><span class="o">.</span><span class="n">set_molecular_charge</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">molecular_charge</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">molecule</span><span class="o">.</span><span class="n">set_multiplicity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c1"># Ca = Psi_J.Ca().to_array() # !!! uitzoeken of elektron altijd bij beta weggenomen wordt !!!</span>
-    <span class="n">Cb_J</span> <span class="o">=</span> <span class="n">Psi_J</span><span class="o">.</span><span class="n">Cb</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
+    <span class="c1"># get wavefunction for the positive ion</span>
+    <span class="n">E_I</span><span class="p">,</span> <span class="n">Psi_I</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># return molecule to its original state</span>
+    <span class="n">molecule</span><span class="o">.</span><span class="n">set_molecular_charge</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">molecular_charge</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">molecule</span><span class="o">.</span><span class="n">set_multiplicity</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">Psi_I</span><span class="p">,</span> <span class="n">Psi_J</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FM_min</span><span class="p">(</span><span class="n">Psi_I</span><span class="p">,</span> <span class="n">Psi_J</span><span class="p">):</span>
+    
     <span class="n">Cb_I</span> <span class="o">=</span> <span class="n">Psi_I</span><span class="o">.</span><span class="n">Cb</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-    
-    <span class="c1">#Da = Ca.T @ Psi_J.Da().to_array() @ Ca.conj() # alpha density matrix in terms of MOs</span>
-    <span class="n">Db_J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_J</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Psi_J</span><span class="o">.</span><span class="n">Db</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># beta density matrix of Psi_J in terms of its MOs</span>
+    <span class="n">Cb_J</span> <span class="o">=</span> <span class="n">Psi_J</span><span class="o">.</span><span class="n">Cb</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
     
     <span class="n">Db_I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_I</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Psi_I</span><span class="o">.</span><span class="n">Db</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_I</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># beta density matrix of Psi_I in terms of its MOs</span>
+    <span class="n">Db_J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_J</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Psi_J</span><span class="o">.</span><span class="n">Db</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_J</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># beta density matrix of Psi_J in terms of its MOs</span>
     
     <span class="n">Ub_IJ</span> <span class="o">=</span> <span class="n">TM</span><span class="p">(</span><span class="n">Cb_I</span><span class="p">,</span> <span class="n">Cb_J</span><span class="p">)</span>
     
     <span class="n">Fb</span> <span class="o">=</span> <span class="n">Db_J</span> <span class="o">-</span> <span class="n">Ub_IJ</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Db_I</span> <span class="o">@</span> <span class="n">Ub_IJ</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
     
-    <span class="n">F_eigenvalues</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Fb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Fb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fukui_analysis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">QC_method</span><span class="p">):</span>
     
-    <span class="k">return</span> <span class="p">(</span><span class="n">F_eigenvalues</span><span class="p">,</span> <span class="n">F_naturals</span><span class="p">)</span>
+    <span class="n">optimize_geometry</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+    
+    <span class="n">Psi_I</span><span class="p">,</span> <span class="n">Psi_J</span> <span class="o">=</span> <span class="n">QC_method</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+    <span class="n">F_min</span> <span class="o">=</span> <span class="n">FM_min</span><span class="p">(</span><span class="n">Psi_I</span><span class="p">,</span> <span class="n">Psi_J</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">F_min</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -776,9 +865,7 @@
 <h2><span class="math notranslate nohighlight">\(\ce{CH_2NH}\)</span><a class="headerlink" href="#ce-ch-2nh" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ch2h&quot;</span>
-
-<span class="n">ch2nh</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ch2nh</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
 
@@ -791,261 +878,6 @@
 <span class="sd">H -0.9323 -1.0310 0.0000</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize_geometry</span><span class="p">(</span><span class="n">ch2nh</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizer: Optimization complete!
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;psi4.core.Molecule at 0x7fbfc8ed11d0&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi4</span><span class="o">.</span><span class="n">set_options</span><span class="p">({</span><span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="s1">&#39;rohf&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;basis&#39;</span><span class="p">:</span> <span class="s1">&#39;6-311++G(2d,2p)&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;s_orthogonalization&#39;</span><span class="p">:</span> <span class="s1">&#39;canonical&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;scf_type&#39;</span><span class="p">:</span> <span class="s1">&#39;df&#39;</span><span class="p">})</span>
-
-<span class="n">energy</span><span class="p">,</span> <span class="n">wfn</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">ch2nh</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">Ca</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-<span class="n">Cb</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">Cb</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Da</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">Da</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-<span class="n">Db</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">Db</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Da_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ca</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Da</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ca</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">Db_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Da</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ch2nh</span><span class="o">.</span><span class="n">set_molecular_charge</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ch2nh</span><span class="o">.</span><span class="n">set_multiplicity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">energy_pos</span><span class="p">,</span> <span class="n">wfn_pos</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="s1">&#39;scf&#39;</span><span class="p">,</span> <span class="n">molecule</span> <span class="o">=</span> <span class="n">ch2nh</span><span class="p">,</span> <span class="n">return_wfn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>felez: [array([6., 7., 1., 1., 1.])]
-all_fc_known: True
-all_fm_known: True
-zel: 16.0
-fzel: [16.0]
-c: [1.0, 0]
-fc: [0.0]
-m: [2]
-fm: [1]
-Assess candidate (1.0, (0.0,), 2, (1,)): 1   2   3   4   4-0 5   5-0 6   6-0 7   7-0
-Assess candidate (1.0, (0.0,), 2, (1,)): T       T   T   T   T   T   T   T   T   T   --&gt; False
-Assess candidate (0, (0.0,), 2, (1,)): T   T   T   T   T       T       T   T   T   --&gt; False
-Following warning is harmless if you&#39;ve altered chgmult through `set_molecular_change` or `set_multiplicity`. Such alterations are an expert feature. Specifying in the original molecule string is preferred.
-
-
-felez: [array([6., 7., 1., 1., 1.])]
-all_fc_known: True
-all_fm_known: True
-zel: 16.0
-fzel: [16.0]
-c: [1.0, 0]
-fc: [0.0]
-m: [2]
-fm: [1]
-Assess candidate (1.0, (0.0,), 2, (1,)): 1   2   3   4   4-0 5   5-0 6   6-0 7   7-0
-Assess candidate (1.0, (0.0,), 2, (1,)): T       T   T   T   T   T   T   T   T   T   --&gt; False
-Assess candidate (0, (0.0,), 2, (1,)): T   T   T   T   T       T       T   T   T   --&gt; False
-Following warning is harmless if you&#39;ve altered chgmult through `set_molecular_change` or `set_multiplicity`. Such alterations are an expert feature. Specifying in the original molecule string is preferred.
-
-
-felez: [array([6., 7., 1., 1., 1.])]
-all_fc_known: True
-all_fm_known: True
-zel: 16.0
-fzel: [16.0]
-c: [1.0, 0]
-fc: [0.0]
-m: [2]
-fm: [1]
-Assess candidate (1.0, (0.0,), 2, (1,)): 1   2   3   4   4-0 5   5-0 6   6-0 7   7-0
-Assess candidate (1.0, (0.0,), 2, (1,)): T       T   T   T   T   T   T   T   T   T   --&gt; False
-Assess candidate (0, (0.0,), 2, (1,)): T   T   T   T   T       T       T   T   T   --&gt; False
-Following warning is harmless if you&#39;ve altered chgmult through `set_molecular_change` or `set_multiplicity`. Such alterations are an expert feature. Specifying in the original molecule string is preferred.
-
-
-felez: [array([6., 7., 1., 1., 1.])]
-all_fc_known: True
-all_fm_known: True
-zel: 16.0
-fzel: [16.0]
-c: [1.0, 0]
-fc: [0.0]
-m: [2]
-fm: [1]
-Assess candidate (1.0, (0.0,), 2, (1,)): 1   2   3   4   4-0 5   5-0 6   6-0 7   7-0
-Assess candidate (1.0, (0.0,), 2, (1,)): T       T   T   T   T   T   T   T   T   T   --&gt; False
-Assess candidate (0, (0.0,), 2, (1,)): T   T   T   T   T       T       T   T   T   --&gt; False
-Following warning is harmless if you&#39;ve altered chgmult through `set_molecular_change` or `set_multiplicity`. Such alterations are an expert feature. Specifying in the original molecule string is preferred.
-
-
-felez: [array([6., 7., 1., 1., 1.])]
-all_fc_known: True
-all_fm_known: True
-zel: 16.0
-fzel: [16.0]
-c: [1.0, 0]
-fc: [0.0]
-m: [2]
-fm: [1]
-Assess candidate (1.0, (0.0,), 2, (1,)): 1   2   3   4   4-0 5   5-0 6   6-0 7   7-0
-Assess candidate (1.0, (0.0,), 2, (1,)): T       T   T   T   T   T   T   T   T   T   --&gt; False
-Assess candidate (0, (0.0,), 2, (1,)): T   T   T   T   T       T       T   T   T   --&gt; False
-Following warning is harmless if you&#39;ve altered chgmult through `set_molecular_change` or `set_multiplicity`. Such alterations are an expert feature. Specifying in the original molecule string is preferred.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ca_pos</span> <span class="o">=</span> <span class="n">wfn_pos</span><span class="o">.</span><span class="n">Ca</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-<span class="n">Cb_pos</span> <span class="o">=</span> <span class="n">wfn_pos</span><span class="o">.</span><span class="n">Cb</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Da_pos</span> <span class="o">=</span> <span class="n">wfn_pos</span><span class="o">.</span><span class="n">Da</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-<span class="n">Db_pos</span> <span class="o">=</span> <span class="n">wfn_pos</span><span class="o">.</span><span class="n">Db</span><span class="p">()</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Da_pos_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ca_pos</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Da_pos</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ca_pos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">Db_pos_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_pos</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Db_pos</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_pos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ua</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ca_pos</span><span class="p">)</span> <span class="o">@</span> <span class="n">Ca</span>
-<span class="n">Ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Cb_pos</span><span class="p">)</span> <span class="o">@</span> <span class="n">Cb</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fa</span> <span class="o">=</span> <span class="n">Da_MO</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ua</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Da_pos_MO</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ua</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">Fb</span> <span class="o">=</span> <span class="n">Db_MO</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ub</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">@</span> <span class="n">Db_pos_MO</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Ub</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Fb</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvalues</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999997
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvalues</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.16094756691081244
-</pre></div>
-</div>
-</div>
-</div>
-<div class="math notranslate nohighlight">
-\[\require{mhchem}\]</div>
-</div>
-<div class="section" id="id1">
-<h2><span class="math notranslate nohighlight">\(\ce{CH_2NH}\)</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ch2h&quot;</span>
-
-<span class="n">ch2nh</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
-
-<span class="sd">0 1                         # neutral singlet</span>
-
-<span class="sd">C 0.0580 0.5852 0.0000</span>
-<span class="sd">N 0.0580 -0.6875 0.0000</span>
-<span class="sd">H -0.8313 1.2172 0.0000</span>
-<span class="sd">H 1.0094 1.1151 0.0000</span>
-<span class="sd">H -0.9323 -1.0310 0.0000</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize_geometry</span><span class="p">(</span><span class="n">ch2nh</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizer: Optimization complete!
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;psi4.core.Molecule at 0x7fbf98c515f0&gt;
 </pre></div>
 </div>
 </div>
@@ -1055,31 +887,427 @@ Following warning is harmless if you&#39;ve altered chgmult through `set_molecul
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
 <span class="c1"># to suppress the output of Psi4</span>
 
-<span class="n">F_eigenvalues</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ROHF</span><span class="p">(</span><span class="n">ch2nh</span><span class="p">)</span>
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">ch2nh</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_eigenvalues</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999992
+</div>
+</div>
+<div class="section" id="ce-co-2">
+<h2><span class="math notranslate nohighlight">\(\ce{CO_2}\)</span><a class="headerlink" href="#ce-co-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co2</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">C	0.0000	0.0000	0.0000</span>
+<span class="sd">O2	0.0000	0.0000	1.1879</span>
+<span class="sd">O3	0.0000	0.0000	-1.1879</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_eigenvalues</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-hcn">
+<h2><span class="math notranslate nohighlight">\(\ce{HCN}\)</span><a class="headerlink" href="#ce-hcn" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcn</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">C1	0.0000	0.0000	-0.5001</span>
+<span class="sd">H2	0.0000	0.0000	-1.5700</span>
+<span class="sd">N3	0.0000	0.0000	0.6529</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">hcn</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-n-2o">
+<h2><span class="math notranslate nohighlight">\(\ce{N_2O}\)</span><a class="headerlink" href="#ce-n-2o" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n2o</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">N1	0.0000	0.0000	-1.2509</span>
+<span class="sd">N2	0.0000	0.0000	-0.0965</span>
+<span class="sd">O3	0.0000	0.0000	1.1790</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">n2o</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-co">
+<h2><span class="math notranslate nohighlight">\(\ce{CO}\)</span><a class="headerlink" href="#ce-co" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">C1	0.0000	0.0000	-0.6546</span>
+<span class="sd">O2	0.0000	0.0000	0.4909</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">co</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-so-2">
+<h2><span class="math notranslate nohighlight">\(\ce{SO_2}\)</span><a class="headerlink" href="#ce-so-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">so2</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">S1	0.0000	0.0000	0.4689</span>
+<span class="sd">O2	0.0000	1.2450	-0.4689</span>
+<span class="sd">O3	0.0000	-1.2450	-0.4689</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">so2</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-so-3">
+<h2><span class="math notranslate nohighlight">\(\ce{SO_3}\)</span><a class="headerlink" href="#ce-so-3" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">so3</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # neutral singlet</span>
+
+<span class="sd">S1	0.0000	0.0000	0.0000</span>
+<span class="sd">O2	0.0000	1.5986	0.0000</span>
+<span class="sd">O3	1.3844	-0.7993	0.0000</span>
+<span class="sd">O4	-1.3844	-0.7993	0.0000</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">so3</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.16094756691081144
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fukui eigenvalue
+------------------
+max: 0.9999999999999996
+min: -0.05217382326251893
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-scn">
+<h2><span class="math notranslate nohighlight">\(\ce{SCN-}\)</span><a class="headerlink" href="#ce-scn" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scn</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">-1 1                         # negative singlet</span>
+
+<span class="sd">C1	0.0000	0.0000	-0.6306</span>
+<span class="sd">S2	0.0000	0.0000	1.0228</span>
+<span class="sd">N3	0.0000	0.0000	-1.7972</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">scn</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fukui eigenvalue
+------------------
+max: 1.0
+min: -0.09178094040006127
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-nco">
+<h2><span class="math notranslate nohighlight">\(\ce{NCO-}\)</span><a class="headerlink" href="#ce-nco" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nco</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">-1 1                         # negative singlet</span>
+
+<span class="sd">N1	0.0000	0.0000	-1.2640</span>
+<span class="sd">C2	0.0000	0.0000	-0.0866</span>
+<span class="sd">O3	0.0000	0.0000	1.1710</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">nco</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fukui eigenvalue
+------------------
+max: 1.000000000000001
+min: -0.08428480956861677
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-no-2">
+<h2><span class="math notranslate nohighlight">\(\ce{NO_2-}\)</span><a class="headerlink" href="#ce-no-2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">no2</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">-1 1                         # negative singlet</span>
+
+<span class="sd">N1	0.0000	0.0000	-1.2640</span>
+<span class="sd">C2	0.0000	0.0000	-0.0866</span>
+<span class="sd">O3	0.0000	0.0000	1.1710</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">no2</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fukui eigenvalue
+------------------
+max: 1.000000000000001
+min: -0.08428480956861677
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ce-hno">
+<h2><span class="math notranslate nohighlight">\(\ce{HNO}\)</span><a class="headerlink" href="#ce-hno" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hno</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">symmetry c1                 # do not assume any symmetry to avoid different irreducible representations</span>
+
+<span class="sd">0 1                         # negative singlet</span>
+
+<span class="sd">H1	-0.9669	0.9227	0.0000</span>
+<span class="sd">N2	0.0645	0.5951	0.0000</span>
+<span class="sd">O3	0.0645	-0.6360	0.0000</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># to suppress the output of Psi4</span>
+
+<span class="n">F_eigval</span><span class="p">,</span> <span class="n">F_naturals</span> <span class="o">=</span> <span class="n">fukui_analysis</span><span class="p">(</span><span class="n">hno</span><span class="p">,</span> <span class="n">ROHF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fukui eigenvalue</span><span class="se">\n</span><span class="s2">------------------</span><span class="se">\n</span><span class="s2">max: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">min: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">F_eigval</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">F_eigval</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fukui eigenvalue
+------------------
+max: 0.9999999999999996
+min: -0.1403010988846764
 </pre></div>
 </div>
 </div>
